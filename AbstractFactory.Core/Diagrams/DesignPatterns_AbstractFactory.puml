@@ -1,0 +1,54 @@
+@startuml DesignPatterns_AbstractFactory
+!theme aws-orange
+
+interface IDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+
+interface IDriverFactory {
+    +IDriver CreateBloodPressureDriver()
+    +IDriver CreateOximeterDriver()
+    +IDriver CreateScaleDriver()
+}
+
+class BloodPressureMedlabDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+class BloodPressureOmronDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+class OximeterMedlabDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+class OximeterWelchAllynDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+class ScaleKernDriver {
+    +IList<Measurement> PerformMeasurement()
+}
+
+class EUDriverFactory {
+    +IDriver CreateBloodPressureDriver()
+    +IDriver CreateOximeterDriver()
+    +IDriver CreateScaleDriver()
+}
+
+class USDriverFactory {
+    +IDriver CreateBloodPressureDriver()
+    +IDriver CreateOximeterDriver()
+    +IDriver CreateScaleDriver()
+}
+
+' Relationships
+IDriver <|.. BloodPressureMedlabDriver
+IDriver <|.. BloodPressureOmronDriver
+IDriver <|.. OximeterMedlabDriver
+IDriver <|.. OximeterWelchAllynDriver
+IDriver <|.. ScaleKernDriver
+
+IDriverFactory <|.. EUDriverFactory
+IDriverFactory <|.. USDriverFactory
+
+IDriverFactory --> IDriver
+
+@enduml
